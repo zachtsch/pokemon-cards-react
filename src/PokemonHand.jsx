@@ -5,8 +5,22 @@ import PokemonCard from "./PokemonCard";
 const HandOfCards = () => {
   const pokemonIds = [1, 4, 7, 10, 13]; // Example Pokémon IDs: Bulbasaur, Charmander, Squirtle, Caterpie, Weedle
 
+  // Drag over and drop handlers (optional for dropping functionality)
+  const handleDragOver = (e) => {
+    e.preventDefault(); // Necessary to allow dropping
+  };
+
+  const handleDrop = (e) => {
+    const droppedPokemonId = e.dataTransfer.getData("text"); // Get the dragged Pokémon ID
+    console.log("Dropped Pokémon ID:", droppedPokemonId);
+  };
+
   return (
-    <div style={styles.hand}>
+    <div
+      style={styles.hand}
+      onDragOver={handleDragOver} // Optional for allowing drop
+      onDrop={handleDrop} // Optional: you can do something with the dropped card here
+    >
       {pokemonIds.map((pokemonId, index) => (
         <div
           key={pokemonId}

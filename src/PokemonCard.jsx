@@ -52,8 +52,19 @@ const PokemonCard = ({ pokemonId }) => {
     ? `linear-gradient(135deg, ${typeColors[primaryType]}, ${typeColors[secondaryType]})`
     : typeColors[primaryType] || "#f8f8f8"; // fallback for single type or unknown types
 
+  // Drag event handlers
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("text/plain", pokemonId); // Store the Pokémon ID during drag
+    e.dataTransfer.effectAllowed = "move";
+  };
+
   return (
-    <div style={{ ...styles.card, background: backgroundColor }}>
+    <div
+      style={{ ...styles.card, background: backgroundColor }}
+      className="pokemon-card"
+      draggable="true" // Enable dragging
+      onDragStart={handleDragStart} // Handle drag start
+    >
       <img src={pokemonData.sprites.front_default} alt={pokemonData.name} style={styles.image} />
       <h3>{pokemonData.name}</h3>
       <p>Type: {pokemonData.types.map((typeInfo) => typeInfo.type.name).join(", ")}</p>
@@ -71,6 +82,8 @@ const styles = {
     textAlign: "center",
     width: "150px",
     margin: "10px",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transition for hover effect
+    cursor: "pointer", // Change cursor to pointer for better UX
   },
   image: {
     width: "100px",

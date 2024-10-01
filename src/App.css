@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+/* styles.css */
+.pokemon-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .pokemon-card:hover {
+    transform: scale(1.1); /* Make the card slightly bigger */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for emphasis */
+    z-index: 10; /* Bring the hovered card in front of others */
+  }
