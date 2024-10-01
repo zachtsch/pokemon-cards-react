@@ -18,8 +18,6 @@ const HandOfCards = () => {
   return (
     <div
       style={styles.hand}
-      onDragOver={handleDragOver} // Optional for allowing drop
-      onDrop={handleDrop} // Optional: you can do something with the dropped card here
     >
       {pokemonIds.map((pokemonId, index) => (
         <div

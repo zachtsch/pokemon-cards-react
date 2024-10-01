@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Draggable, {DraggableCore} from 'react-draggable'; 
 // Color mapping for Pokémon types
 const typeColors = {
   grass: "#78C850",
@@ -59,6 +59,7 @@ const PokemonCard = ({ pokemonId }) => {
   };
 
   return (
+    <Draggable id="draggable">
     <div
       style={{ ...styles.card, background: backgroundColor }}
       className="pokemon-card"
@@ -71,6 +72,7 @@ const PokemonCard = ({ pokemonId }) => {
       <p>Weight: {pokemonData.weight}</p>
       <p>Height: {pokemonData.height}</p>
     </div>
+    </Draggable>
   );
 };
 
