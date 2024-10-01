@@ -43,14 +43,17 @@ const PokemonCard = ({ pokemonId }) => {
     return <div>Loading...</div>;
   }
 
-  // Get the primary type of the Pokémon
+  // Get the primary and secondary types of the Pokémon
   const primaryType = pokemonData.types[0].type.name;
+  const secondaryType = pokemonData.types[1]?.type.name;
 
-  // Set the background color based on the primary type
-  const backgroundColor = typeColors[primaryType] || "#f8f8f8"; // default color if type is not in typeColors
+  // Set the background color based on the types
+  const backgroundColor = secondaryType
+    ? `linear-gradient(135deg, ${typeColors[primaryType]}, ${typeColors[secondaryType]})`
+    : typeColors[primaryType] || "#f8f8f8"; // fallback for single type or unknown types
 
   return (
-    <div style={{ ...styles.card, backgroundColor }}>
+    <div style={{ ...styles.card, background: backgroundColor }}>
       <img src={pokemonData.sprites.front_default} alt={pokemonData.name} style={styles.image} />
       <h3>{pokemonData.name}</h3>
       <p>Type: {pokemonData.types.map((typeInfo) => typeInfo.type.name).join(", ")}</p>
